@@ -1,0 +1,38 @@
+---
+services:
+  traefik:
+    image: traefik:v3.0
+    container_name: traefik
+    restart: always
+    command:
+    networks:
+      - traefik
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./config:/etc/traefik:ro
+      - ./cert:/etc/cert:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      # Http
+      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.http-catchall.entrypoints=http"
+      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      # Traefik Dashboard
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.traefik-dashboard.entrypoints=https"
+      - "traefik.http.routers.traefik-dashboard.tls=true"
+      - "traefik.http.routers.traefik-dashboard.rule=Host(`traefik.attina.io`)"
+      - "traefik.http.routers.traefik-dashboard.service=dashboard@internal"
+      # Traefik Dashboard API
+      - "traefik.http.routers.traefik-dashboard-api.entrypoints=https"
+      - "traefik.http.routers.traefik-dashboard-api.tls=true"
+      - "traefik.http.routers.traefik-dashboard-api.rule=Host(`traefik.attina.io`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.traefik-dashboard-api.service=api@internal"
+
+networks:
+  traefik:
+    external: true

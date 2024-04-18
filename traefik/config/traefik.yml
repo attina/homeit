@@ -1,0 +1,28 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false
+
+api:
+  insecure: true
+  dashboard: true
+  debug: true
+  disableDashboardAd: true
+
+entryPoints:
+  http:
+    address: ":80"                            # Create the HTTP entrypoint on port 80
+    http:
+      redirections:                           # HTTPS redirection (80 to 443)
+        entryPoint:
+          to: "https"                         # The target element
+          scheme: "https"                     # The redirection target scheme
+  https:
+    address: ":443"                           # Create the HTTPS entrypoint on port 443
+
+providers:
+  docker:
+    exposedByDefault: true
+
+  file:
+    filename: /etc/traefik/dynamic.yml
+    watch: true

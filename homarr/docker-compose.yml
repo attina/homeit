@@ -1,0 +1,25 @@
+---
+#---------------------------------------------------------------------#
+#     Homarr - A simple, yet powerful dashboard for your server.     #
+#---------------------------------------------------------------------#
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
+    restart: unless-stopped
+    networks:
+      - traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Optional, only if you want docker integration
+      - /data/homarr/configs:/app/data/configs
+      - /data/homarr/icons:/app/public/icons
+      - /data/homarr/data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.homarr.rule=Host(`homarr.attina.io`)"
+      - "traefik.http.routers.homarr.tls=true"
+
+networks:
+  traefik:
+    external: true

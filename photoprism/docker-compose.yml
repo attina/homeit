@@ -106,10 +106,10 @@ services:
     ## Storage Folders: "~" is a shortcut for your home directory, "." for the current directory
     volumes:
       # "/host/folder:/photoprism/folder"                # Example
-      - "/data/photoprism/originals:/photoprism/originals"               # Original media files (DO NOT REMOVE)
+      - "/data/attina.io/photoprism/originals:/photoprism/originals"               # Original media files (DO NOT REMOVE)
       # - "/example/family:/photoprism/originals/family" # *Additional* media folders can be mounted like this
-      - "/data/photoprism/import:/photoprism/import"                  # *Optional* base folder from which files can be imported to originals
-      - "/data/photoprism/storage:/photoprism/storage"                  # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
+      - "/data/attina.io/photoprism/import:/photoprism/import"                  # *Optional* base folder from which files can be imported to originals
+      - "/data/attina.io/photoprism/storage:/photoprism/storage"                  # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
 
   ## Database Server (recommended)
   ## see https://docs.photoprism.app/getting-started/faq/#should-i-use-sqlite-mariadb-or-mysql
@@ -134,7 +134,7 @@ services:
       - --innodb-lock-wait-timeout=120
     ## Never store database files on an unreliable device such as a USB flash drive, an SD card, or a shared network folder:
     volumes:
-      - "./database:/var/lib/mysql" # DO NOT REMOVE
+      - "/data/attina.io/photoprism/database:/var/lib/mysql" # DO NOT REMOVE
     environment:
       MARIADB_AUTO_UPGRADE: "1"
       MARIADB_INITDB_SKIP_TZINFO: "1"

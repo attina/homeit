@@ -11,9 +11,9 @@ services:
       - traefik
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # Optional, only if you want docker integration
-      - /data/homarr/configs:/app/data/configs
-      - /data/homarr/icons:/app/public/icons
-      - /data/homarr/data:/data
+      - /data/attina.io/homarr/configs:/app/data/configs
+      - /data/attina.io/homarr/icons:/app/public/icons
+      - /data/attina.io/homarr/data:/data
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik"

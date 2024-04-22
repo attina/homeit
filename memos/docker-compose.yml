@@ -4,7 +4,7 @@ services:
     image: ghcr.io/usememos/memos:latest
     container_name: memos
     volumes:
-      - /data/memos:/var/opt/memos
+      - /data/attina.io/memos:/var/opt/memos
     networks:
       - traefik
     labels:

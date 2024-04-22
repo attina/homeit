@@ -20,7 +20,7 @@ services:
       - SYMFONY__ENV__DOMAIN_NAME=https://wallabag.attina.io
       - SYMFONY__ENV__SERVER_NAME="wallabag"
     volumes:
-      - /data/wallabag/images:/var/www/wallabag/web/assets/images
+      - /data/attina.io/wallabag/images:/var/www/wallabag/web/assets/images
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik"
@@ -49,7 +49,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=wallaroot
     volumes:
-      - /data/wallabag/data:/var/lib/mysql
+      - /data/attina.io/wallabag/data:/var/lib/mysql
   redis:
     image: redis:alpine
     restart: unless-stopped    

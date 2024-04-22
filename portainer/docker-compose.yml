@@ -8,7 +8,7 @@ services:
       - traefik
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      - /data/attina.io/portainer:/data
     labels:
       # Frontend
       - "traefik.enable=true"
@@ -23,10 +23,6 @@ services:
       - "traefik.http.services.edge.loadbalancer.server.port=8000"
       - "traefik.http.routers.edge.service=edge"
       - "traefik.http.routers.edge.tls=true"
-
-volumes:
-  portainer_data:
-    external: true
 
 networks:
   traefik:

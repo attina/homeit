@@ -11,8 +11,8 @@ services:
       - DOCKER_MODS=linuxserver/mods:universal-calibre #optional
       - OAUTHLIB_RELAX_TOKEN_SCOPE=1 #optional
     volumes:
-      - /data/calibre-web/data:/config
-      - /data/calibre-web/calibre/library:/books
+      - /data/attina.io/calibre-web/data:/config
+      - /data/attina.io/calibre-web/calibre/library:/books
     networks:
       - traefik
     labels:

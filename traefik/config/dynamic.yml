@@ -2,3 +2,16 @@ tls:
   certificates:
     - certFile: /etc/cert/attina.io+1.pem
       keyFile: /etc/cert/attina.io+1-key.pem
+
+http:
+  routers:
+    gitlab:
+      rule: Host(`gitlab.attina.io`)
+      service: gitlab
+      tls: true
+
+  services:
+    gitlab:
+      loadBalancer:
+        servers:
+          - url: http://10.13.52.24:9043

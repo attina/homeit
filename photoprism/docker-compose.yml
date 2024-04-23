@@ -32,7 +32,7 @@ services:
     ## Don't enable automatic restarts until PhotoPrism has been properly configured and tested!
     ## If the service gets stuck in a restart loop, this points to a memory, filesystem, network, or database issue:
     ## https://docs.photoprism.app/getting-started/troubleshooting/#fatal-server-errors
-    # restart: unless-stopped
+    restart: unless-stopped
     stop_grace_period: 10s
     depends_on:
       - mariadb
@@ -43,7 +43,6 @@ services:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
       - "traefik.http.routers.photoprism.rule=Host(`photoprism.attina.io`)"
       - "traefik.http.routers.photoprism.tls=true"
 

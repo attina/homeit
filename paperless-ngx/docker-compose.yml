@@ -32,18 +32,8 @@ services:
       - tika
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
       - "traefik.http.routers.paperless.rule=Host(`paperless.attina.io`)"
-      - "traefik.http.routers.paperless.entrypoints=https"
       - "traefik.http.routers.paperless.tls=true"
-      ## Services
-      - "traefik.http.services.paperless.loadbalancer.server.port=8000"
-      - "traefik.http.routers.paperless.service=paperless"
-    healthcheck:
-      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
     volumes:
       - /data/attina.io/paperless-ngx/data:/usr/src/paperless/data
       - /data/attina.io/paperless-ngx/media:/usr/src/paperless/media

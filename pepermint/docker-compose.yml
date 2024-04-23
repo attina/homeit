@@ -3,7 +3,7 @@ services:
   peppermint_postgres:
     container_name: peppermint_postgres
     image: postgres:latest
-    restart: always
+    restart: unless-stopped
     networks:
       - traefik
     volumes:
@@ -16,7 +16,7 @@ services:
   peppermint:
     container_name: peppermint
     image: pepperlabs/peppermint:latest
-    restart: always
+    restart: unless-stopped
     networks:
       - traefik
     depends_on:
@@ -31,20 +31,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
-      # http
       - "traefik.http.routers.pepermint.rule=Host(`pepermint.attina.io`)"
-      - "traefik.http.routers.pepermint.entrypoints=http"
-      - "traefik.http.middlewares.pepermint-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.pepermint.middlewares=pepermint-https-redirect"
-      # https
-      - "traefik.http.routers.pepermint-secure.rule=Host(`pepermint.attina.io`)"
-      - "traefik.http.routers.pepermint-secure.entrypoints=https"
-      - "traefik.http.routers.pepermint-secure.tls=true"
-      - "traefik.http.routers.pepermint-secure.service=pepermint"
-      # Service
+      - "traefik.http.routers.pepermint.tls=true"
+      - "traefik.http.routers.pepermint.service=pepermint"
       - "traefik.http.services.pepermint.loadbalancer.server.port=3000"
-      - "traefik.http.services.pepermint.loadbalancer.server.scheme=http"
 
 networks:
   traefik:

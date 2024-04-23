@@ -23,20 +23,8 @@ services:
       - /data/attina.io/wallabag/images:/var/www/wallabag/web/assets/images
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
-      # http
-      - "traefik.http.routers.wallabag-http.rule=Host(`wallabag.attina.io`)"
-      - "traefik.http.routers.wallabag-http.entrypoints=http"
-      - "traefik.http.middlewares.wallabag-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.wallabag-http.middlewares=wallabag-https-redirect"
-      # https
       - "traefik.http.routers.wallabag.rule=Host(`wallabag.attina.io`)"
-      - "traefik.http.routers.wallabag.entrypoints=https"
       - "traefik.http.routers.wallabag.tls=true"
-      - "traefik.http.routers.wallabag.service=wallabag-http"
-      # Service
-      - "traefik.http.services.wallabag-http.loadbalancer.server.port=80"
-      - "traefik.http.services.wallabag-http.loadbalancer.server.scheme=http"
 
     depends_on:
       - db

@@ -3,23 +3,21 @@ services:
   portainer:
     image: portainer/portainer-ce:2.20.1
     command: -H unix:///var/run/docker.sock
-    restart: always
+    restart: unless-stopped
     networks:
       - traefik
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /data/attina.io/portainer:/data
     labels:
-      # Frontend
       - "traefik.enable=true"
+      # Frontend
       - "traefik.http.routers.frontend.rule=Host(`portainer.attina.io`)"
-      - "traefik.http.routers.frontend.entrypoints=https"
       - "traefik.http.services.frontend.loadbalancer.server.port=9000"
       - "traefik.http.routers.frontend.service=frontend"
       - "traefik.http.routers.frontend.tls=true"
       # Edge
       - "traefik.http.routers.edge.rule=Host(`edge.attina.io`)"
-      - "traefik.http.routers.edge.entrypoints=https"
       - "traefik.http.services.edge.loadbalancer.server.port=8000"
       - "traefik.http.routers.edge.service=edge"
       - "traefik.http.routers.edge.tls=true"

@@ -9,11 +9,8 @@ services:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
       - "traefik.http.routers.memos.rule=Host(`memos.attina.io`)"
-      - "traefik.http.routers.memos.entrypoints=https"
       - "traefik.http.routers.memos.tls=true"
-      - "traefik.http.routers.memos.service=memos-memos@docker"
 
 networks:
   traefik:

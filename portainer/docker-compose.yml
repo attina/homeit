@@ -1,7 +1,7 @@
 ---
 services:
   portainer:
-    image: portainer/portainer-ce:2.20.1
+    image: portainer/portainer-ce:2.21.4
     command: -H unix:///var/run/docker.sock
     restart: unless-stopped
     networks:
@@ -25,3 +25,4 @@ services:
 networks:
   traefik:
     external: true
+

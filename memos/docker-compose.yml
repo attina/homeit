@@ -9,9 +9,9 @@ services:
     networks:
       - traefik
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.memos.rule=Host(`memos.attina.io`)"
-      - "traefik.http.routers.memos.tls=true"
+      - traefik.enable=true
+      - traefik.http.routers.memos.rule=Host(`memos.attina.io`)
+      - traefik.http.routers.memos.tls=true
 
 networks:
   traefik:

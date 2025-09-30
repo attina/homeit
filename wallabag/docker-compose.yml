@@ -22,9 +22,9 @@ services:
     volumes:
       - /data/attina.io/wallabag/images:/var/www/wallabag/web/assets/images
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.wallabag.rule=Host(`wallabag.attina.io`)"
-      - "traefik.http.routers.wallabag.tls=true"
+      - traefik.enable=true
+      - traefik.http.routers.wallabag.rule=Host(`wallabag.attina.io`)
+      - traefik.http.routers.wallabag.tls=true
 
     depends_on:
       - db

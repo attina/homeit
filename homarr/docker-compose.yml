@@ -15,11 +15,11 @@ services:
     environment:
       - SECRET_ENCRYPTION_KEY=b346165247b05de297666e045f6e5e6f124adf5ee818aa2c0c32ed6d16becbb3
     ports:
-      - '7575:7575'
+      - 7575:7575
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.homarr.rule=Host(`homarr.attina.io`)"
-      - "traefik.http.routers.homarr.tls=true"
+      - traefik.enable=true
+      - traefik.http.routers.homarr.rule=Host(`homarr.attina.io`)
+      - traefik.http.routers.homarr.tls=true
 
 networks:
   traefik:

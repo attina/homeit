@@ -9,9 +9,9 @@ services:
     networks:
       - traefik
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.talebook.rule=Host(`talebook.attina.io`)"
-      - "traefik.http.routers.talebook.tls=true"
+      - traefik.enable=true
+      - traefik.http.routers.talebook.rule=Host(`talebook.attina.io`)
+      - traefik.http.routers.talebook.tls=true
     environment:
       - PUID=1000
       - PGID=1000

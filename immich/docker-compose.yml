@@ -23,9 +23,9 @@ services:
     networks:
       - traefik
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.immich.rule=Host(`immich.attina.io`)"
-      - "traefik.http.routers.immich.tls=true"
+      - traefik.enable=true
+      - traefik.http.routers.immich.rule=Host(`immich.attina.io`)
+      - traefik.http.routers.immich.tls=true
     env_file:
       - stack.env
     ports:

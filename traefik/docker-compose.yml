@@ -15,15 +15,15 @@ services:
       - ./cert:/etc/cert:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
-      - "traefik.enable=true"
+      - traefik.enable=true
       # Traefik Dashboard
-      - "traefik.http.routers.traefik-dashboard.tls=true"
-      - "traefik.http.routers.traefik-dashboard.rule=Host(`traefik.attina.io`)"
-      - "traefik.http.routers.traefik-dashboard.service=dashboard@internal"
+      - traefik.http.routers.traefik-dashboard.tls=true
+      - traefik.http.routers.traefik-dashboard.rule=Host(`traefik.attina.io`)
+      - traefik.http.routers.traefik-dashboard.service=dashboard@internal
       # Traefik Dashboard API
-      - "traefik.http.routers.traefik-dashboard-api.tls=true"
-      - "traefik.http.routers.traefik-dashboard-api.rule=Host(`traefik.attina.io`) && PathPrefix(`/api`)"
-      - "traefik.http.routers.traefik-dashboard-api.service=api@internal"
+      - traefik.http.routers.traefik-dashboard-api.tls=true
+      - traefik.http.routers.traefik-dashboard-api.rule=Host(`traefik.attina.io`) && PathPrefix(`/api`)
+      - traefik.http.routers.traefik-dashboard-api.service=api@internal
 
 networks:
   traefik:

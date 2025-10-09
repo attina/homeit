@@ -10,17 +10,17 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /data/attina.io/portainer:/data
     labels:
-      - "traefik.enable=true"
+      - traefik.enable=true
       # Frontend
-      - "traefik.http.routers.frontend.rule=Host(`portainer.attina.io`)"
-      - "traefik.http.services.frontend.loadbalancer.server.port=9000"
-      - "traefik.http.routers.frontend.service=frontend"
-      - "traefik.http.routers.frontend.tls=true"
+      - traefik.http.routers.frontend.rule=Host(`portainer.attina.io`)
+      - traefik.http.services.frontend.loadbalancer.server.port=9000
+      - traefik.http.routers.frontend.service=frontend
+      - traefik.http.routers.frontend.tls=true
       # Edge
-      - "traefik.http.routers.edge.rule=Host(`edge.attina.io`)"
-      - "traefik.http.services.edge.loadbalancer.server.port=8000"
-      - "traefik.http.routers.edge.service=edge"
-      - "traefik.http.routers.edge.tls=true"
+      - traefik.http.routers.edge.rule=Host(`edge.attina.io`)
+      - traefik.http.services.edge.loadbalancer.server.port=8000
+      - traefik.http.routers.edge.service=edge
+      - traefik.http.routers.edge.tls=true
 
 networks:
   traefik:

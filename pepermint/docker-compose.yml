@@ -30,11 +30,11 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.pepermint.rule=Host(`pepermint.attina.io`)"
-      - "traefik.http.routers.pepermint.tls=true"
-      - "traefik.http.routers.pepermint.service=pepermint"
-      - "traefik.http.services.pepermint.loadbalancer.server.port=3000"
+      - traefik.enable=true
+      - traefik.http.routers.pepermint.rule=Host(`pepermint.attina.io`)
+      - traefik.http.routers.pepermint.tls=true
+      - traefik.http.routers.pepermint.service=pepermint
+      - traefik.http.services.pepermint.loadbalancer.server.port=3000
 
 networks:
   traefik:

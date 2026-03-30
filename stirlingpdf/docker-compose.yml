@@ -14,7 +14,7 @@ services:
       - LANGS=en_GB
     networks:
       - traefik
-    restart: always
+    restart: unless-stopped
     labels:
       - traefik.enable=true
       - traefik.http.routers.stirlingpdf.rule=Host(`stirlingpdf.attina.io`)
